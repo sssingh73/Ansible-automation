@@ -1,0 +1,14 @@
+---
+- name: Check if Linuxbrew is already installed in {{ linuxbrew_shared_path }}
+  stat:
+    path: "{{ linuxbrew_shared_path }}/bin/brew"
+  register: brew
+  become: true
+
+- name: Install Homebrew
+  script: install-homebrew.sh
+  when: not brew.stat.exists
+  become: false
+
+- name: Load Linuxbrew in profile
+  include_tasks: set_brew_path.yml

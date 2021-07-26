@@ -1,0 +1,13 @@
+---
+
+- name: Set path to Linuxbrew 
+  set_fact:
+    linuxbrew_path: "{{ item }}"
+  with_first_found:
+    - "{{ linuxbrew_shared_path }}"
+  become: true
+
+- name: Load Linuxbrew in profile
+  include_tasks: set_profile.yml
+  when: linuxbrew_path is defined
+

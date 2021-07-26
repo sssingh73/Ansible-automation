@@ -1,0 +1,3 @@
+# Shared directory to install Linuxbrew in
+linuxbrew_shared_path: "/home/linuxbrew/.linuxbrew"
+upgrade_homebrew_packages: false

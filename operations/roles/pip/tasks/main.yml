@@ -1,0 +1,8 @@
+---
+- name: Installing python packages
+  become: yes
+  pip:
+    requirements: $PWD/roles/pip/files/pip-requirements.txt # not required. The path to a pip requirements file, which should be local to the remote system. File can be specified as a relative path if using the chdir option.
+    state: present # not required. choices: absent;forcereinstall;latest;present. The state of module,The 'forcereinstall' option is only available in Ansible 2.1 and above.
+    extra_args: "--trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org"
+    

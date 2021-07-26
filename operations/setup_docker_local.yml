@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+  - include_role:
+      name: software_common_apt
+      
+  - include_role:
+      name: docker
+
+  

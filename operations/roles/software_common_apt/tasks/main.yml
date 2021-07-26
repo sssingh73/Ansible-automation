@@ -1,0 +1,27 @@
+---
+- name: Installing Common Apt packages
+  become: yes
+  become_method: sudo
+  apt:
+    pkg:
+    - apt-transport-https
+    - ca-certificates
+    - software-properties-common
+    - python3-pip
+    - virtualenv
+    - python3-setuptools
+    - vim
+    - tmux
+    - htop
+    - jq
+    - curl
+    - git
+    - aptitude
+    - ruby
+    - python-is-python3  # to fix /usr/bin/env: ‘python’: No such file or directory
+    - openjdk-11-jdk
+    - net-tools
+    - libpq-dev
+    state: latest
+    # update_cache: yes 
+    # force_apt_get: yes

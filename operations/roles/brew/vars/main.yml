@@ -1,0 +1,2 @@
+# Shared directory to install Linuxbrew in
+linuxbrew_shared_path: "/home/linuxbrew/.linuxbrew"

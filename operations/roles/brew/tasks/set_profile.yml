@@ -1,0 +1,37 @@
+---
+
+- name: Set path to .profile
+  set_fact:
+    linux_profile_path: "~/.profile"
+  when: linux_profile_path is undefined
+
+- name: Check whether .profile file exists
+  stat:
+    path: "{{ linux_profile_path }}"
+  register: profile_path
+
+- name: Load Linuxbrew in .profile
+  blockinfile:
+    dest: "{{ linux_profile_path }}"
+    marker: "# {mark} Block managed by Ansible: linuxbrew"
+    block: |
+      PATH="$PATH:{{ linuxbrew_path }}/bin"
+  when: profile_path.stat.exists
+
+- name: Set path to .zshrc
+  set_fact:
+    linux_zshrc_path: "~/.zshrc"
+  when: linux_zshrc_path is undefined
+
+- name: Check whether .zshrc file exists
+  stat:
+    path: "{{ linux_zshrc_path }}"
+  register: zshrc_path
+
+- name: Load Linuxbrew in .zshrc
+  blockinfile:
+    dest: "{{ linux_zshrc_path }}"
+    marker: "# {mark} Block managed by Ansible: linuxbrew"
+    block: |
+      PATH="$PATH:{{ linuxbrew_path }}/bin"
+  when: zshrc_path.stat.exists
